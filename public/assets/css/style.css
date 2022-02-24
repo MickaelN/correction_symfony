@@ -1,6 +1,29 @@
-h1{
-    color:aquamarine;
+:root{
+    --nav-color: #fff;
+    --text-height: 1.5rem;
+}
+.locauto-nav{
+    background-color: var(--nav-color);
+    padding: 0.5rem 1rem;
+    font-size: var(--text-height);
+    border-bottom: 3px solid #89A894;
+}
+.logo{
+    height: 60px;
+}
+body{
+    background-color: #f5f5f5;
+    color: #341C1C;
 }
 .car{
-    border: 1px solid aqua;
+    border: 2px solid #4B644A;
+    border-radius: 5px;
+    padding: 1rem;
+    margin: 1rem;
+    background-color: #fff;
+}
+.footer{
+    background-color: black;
+    padding: 1rem;
+    color: white;
 }
