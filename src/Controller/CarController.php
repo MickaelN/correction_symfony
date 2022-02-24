@@ -13,8 +13,15 @@ class CarController extends AbstractController
      */
     public function index(): Response
     {
+        $carInfo = [
+            'brand' => 'Ferrari',
+            'model' => '488 GTB',
+            'year' => '2015',
+            'engine' => 'V8 bi-turbo',
+            'color' => 'red'
+        ];
         return $this->render('car/index.html.twig', [
-            'controller_name' => 'CarController',
+            'carInfo' => $carInfo,
         ]);
     }
 }
