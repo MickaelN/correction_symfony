@@ -10,10 +10,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class CarController extends AbstractController
 {
     private Cars $car;
-    
+
     public function __construct()
     {
         $this->car = new Cars();
+        $this->car->setId(1);
         $this->car->setBrand('Ferrari');
         $this->car->setModel('488 GTB');
         $this->car->setYear(2015);
@@ -25,8 +26,17 @@ class CarController extends AbstractController
      * @Route("/car", name="car")
      */
     public function index(): Response
-    { 
+    {
         return $this->render('car/index.html.twig', [
+            'carInfo' => $this->car,
+        ]);
+    }
+    /**
+     * @Route("/car/info", name="carInfo")
+     */
+    public function info(): Response
+    {
+        return $this->render('car/info.html.twig', [
             'carInfo' => $this->car,
         ]);
     }

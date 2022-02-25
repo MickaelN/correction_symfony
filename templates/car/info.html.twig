@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détail de la voiture {{ carInfo.brand }} {{carInfo.model}}
+{% endblock %}
+
+{% block body %}
+	<div class="example-wrapper">
+		<h1>Nos voitures</h1>
+		<div class="row">
+			<div class="col-4 car">
+				<h2>{{ carInfo.brand }}</h2>
+				<p>{{carInfo.model}}</p>
+				<p>{{carInfo.year}}</p>
+				<p>{{carInfo.engine}}</p>
+				<p>{{carInfo.color}}</p>
+                <a href="{{path('car')}}" class="btn btn-danger">Retour</a> 				
+			</div>
+		</div>
+	</div>
+{% endblock %}
