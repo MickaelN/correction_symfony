@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Cars;
+use Cocur\Slugify\Slugify;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -18,6 +19,7 @@ class CarsRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Cars::class);
     }
+
 
     // /**
     //  * @return Cars[] Returns an array of Cars objects

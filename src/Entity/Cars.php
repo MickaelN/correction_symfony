@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\CarsRepository;
+use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -111,4 +112,10 @@ class Cars
 
         return $this;
     }
+
+    public function getSlug():string{
+        $slug = new Slugify();
+        return $slug->slugify($this->brand . ' ' . $this->model);
+    }
+    
 }

@@ -7,12 +7,13 @@
 	<div class="example-wrapper">
 		<h1>Nos voitures</h1>
 		<div class="row justify-content-center">
-		{% for car in carList %}
-			<div class="col-3 m-2 car">
-				<h2>{{ car.brand }}</h2>
-				<p>{{car.model}}</p>
-				<a href="{{path('car')}}" class="btn btn-success">Voir plus</a>
-			</div>
+			{% for car in carList %}
+				<div class="col-3 m-2 car">
+					<h2>{{ car.brand }}</h2>
+					<p>{{car.model}}</p>
+					<a href="{{path('carInfo',{id: car.id, slug: car.slug})}}" class="btn btn-success">Voir plus</a>
+					<p>Slug :{{ car.slug }}</p>
+				</div>
 			{% endfor %}
 		</div>
 	</div>
