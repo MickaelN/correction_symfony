@@ -6,12 +6,14 @@
 {% block body %}
 	<div class="example-wrapper">
 		<h1>Nos voitures</h1>
-		<div class="row">
-			<div class="col-4 car">
-				<h2>{{ carInfo.brand }}</h2>
-				<p>{{carInfo.model}}</p>
-				<a href="{{path('carInfo')}}" class="btn btn-success">Voir plus</a>
+		<div class="row justify-content-center">
+		{% for car in carList %}
+			<div class="col-3 m-2 car">
+				<h2>{{ car.brand }}</h2>
+				<p>{{car.model}}</p>
+				<a href="{{path('car')}}" class="btn btn-success">Voir plus</a>
 			</div>
+			{% endfor %}
 		</div>
 	</div>
 {% endblock %}

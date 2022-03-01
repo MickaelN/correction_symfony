@@ -3,32 +3,21 @@
 namespace App\Controller;
 
 use App\Entity\Cars;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CarController extends AbstractController
 {
-    private Cars $car;
-
-    public function __construct()
-    {
-        $this->car = new Cars();
-        $this->car->setId(1);
-        $this->car->setBrand('Ferrari');
-        $this->car->setModel('488 GTB');
-        $this->car->setYear(2015);
-        $this->car->setEngine('V8 bi-turbo');
-        $this->car->setColor('red');
-    }
-
     /**
      * @Route("/car", name="car")
      */
-    public function index(): Response
+    public function index(ManagerRegistry $doctrine): Response
     {
+        $cars = $doctrine->getRepository(Cars::class)->findAll();
         return $this->render('car/index.html.twig', [
-            'carInfo' => $this->car,
+            'carList' => $cars,
         ]);
     }
     /**
