@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\CarsRepository;
 use Cocur\Slugify\Slugify;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -42,6 +44,16 @@ class Cars
      * @ORM\Column(type="string", length=255)
      */
     private $color;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=EnergyOption::class, mappedBy="car")
+     */
+    private $energyOptions;
+
+    public function __construct()
+    {
+        $this->energyOptions = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -117,5 +129,36 @@ class Cars
         $slug = new Slugify();
         return $slug->slugify($this->brand . ' ' . $this->model);
     }
+
+    /**
+     * @return Collection<int, EnergyOption>
+     */
+    public function getEnergyOptions(): Collection
+    {
+        return $this->energyOptions;
+    }
+
+    public function addEnergyOption(EnergyOption $energyOption): self
+    {
+        if (!$this->energyOptions->contains($energyOption)) {
+            $this->energyOptions[] = $energyOption;
+            $energyOption->addCar($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEnergyOption(EnergyOption $energyOption): self
+    {
+        if ($this->energyOptions->removeElement($energyOption)) {
+            $energyOption->removeCar($this);
+        }
+
+        return $this;
+    }
     
+    public function __toString()
+    {
+        return $this->brand . '/' . $this->model;
+    }
 }

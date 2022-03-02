@@ -1,0 +1,10 @@
+{{ form_start(form) }}
+{{ form_widget(form) }}
+<div class="btn-group" role="group">
+	<button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+	<a class="btn btn-light" href="{{ path('energy_option_index') }}">Retour</a>
+	{% if button_label is defined %}
+		{{ include('energy_option/_delete_form.html.twig') }}
+	{% endif %}
+</div>
+{{ form_end(form) }}
