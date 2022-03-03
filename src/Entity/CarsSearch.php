@@ -32,4 +32,5 @@ class CarsSearch
     {
         $this->energyOption = new ArrayCollection();
     }
+
 }

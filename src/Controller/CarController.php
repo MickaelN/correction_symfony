@@ -22,11 +22,15 @@ class CarController extends AbstractController
     {
         $cars = $carsRepository->findAll();
         $carSearch = new CarsSearch;
-        // $form = $this->createForm(SearchCarType::class, $carSearch);
-        // $form->handleRequest($request);
+        $form = $this->createForm(SearchCarType::class, $carSearch);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            $search_car = $request->request->get('search_car');
+            $cars = $carsRepository->findBySearch($search_car['energyOption']);
+        }
         return $this->render('car/index.html.twig', [
             'carList' => $cars,
-            // 'form' => $form->createView()
+            'form' => $form->createView()
         ]);
     }
     /**
@@ -36,7 +40,7 @@ class CarController extends AbstractController
     {
         //On vérifie que la voiture a été trouvé et que le slug correspond. Si ce n'est pas la cas on redirige vers la liste des voitures
         if (is_null($cars) || $cars->getSlug() != $slug) {
-            return $this->redirectToRoute('car',[], 301);
+            return $this->redirectToRoute('car', [], 301);
         }
         return $this->render('car/info.html.twig', [
             'carInfo' => $cars,

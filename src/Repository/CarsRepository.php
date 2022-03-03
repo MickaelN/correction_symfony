@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Cars;
+use App\Entity\CarsSearch;
 use Cocur\Slugify\Slugify;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -20,6 +21,16 @@ class CarsRepository extends ServiceEntityRepository
         parent::__construct($registry, Cars::class);
     }
 
+    public function findBySearch($carsSearch)
+    {
+        $query = $this->createQueryBuilder('c')
+            //Le MEMBER OF permet à doctrine de faire la jointure et la bonne recherche
+            ->andWhere(':idOptionEnergy MEMBER OF c.energyOptions')
+            ->setParameter('idOptionEnergy', $carsSearch)
+            ->getQuery()
+            ->getResult();
+        return $query;
+    }
 
     // /**
     //  * @return Cars[] Returns an array of Cars objects

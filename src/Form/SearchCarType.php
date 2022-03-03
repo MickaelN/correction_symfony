@@ -16,7 +16,8 @@ class SearchCarType extends AbstractType
         $builder
             ->add('energyOption', EntityType::class,[
                 'class' => EnergyOption::class,
-                'choice_label' => 'name'
+                'choice_label' => 'name',
+                'mapped' => false
             ])
         ;
     }
@@ -28,8 +29,5 @@ class SearchCarType extends AbstractType
         ]);
     }
 
-    public function getBlockPrefix()
-    {
-        return 'TOTOTOTOTOTOTO';
-    }
+
 }
