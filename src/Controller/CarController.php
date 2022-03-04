@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Cars;
 use App\Entity\CarsSearch;
+use App\Entity\Seats;
 use App\Form\SearchCarType;
 use App\Repository\CarsRepository;
+use App\Repository\SeatsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;

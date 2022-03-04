@@ -12,6 +12,13 @@ class CarsSearch
     private $energyOption;
 
     /**
+     * Undocumented variable
+     *
+     * @var ArrayCollection
+     */
+    private $seat;
+
+    /**
      * @return ArrayCollection
      */
     public function getEnergyOption(): ArrayCollection
@@ -28,9 +35,26 @@ class CarsSearch
         return $this;
     }
 
+     /**
+     * @return ArrayCollection
+     */
+    public function getSeat(): ArrayCollection
+    {
+        return $this->seat;
+    }
+    /**
+     * @param ArrayCollection $seat
+     * @return self
+     */
+    public function setSeat(ArrayCollection $seat): self
+    {
+        $this->seat = $seat;
+        return $this;
+    }
+
     public function __construct()
     {
         $this->energyOption = new ArrayCollection();
+        $this->seat = new ArrayCollection();
     }
-
 }

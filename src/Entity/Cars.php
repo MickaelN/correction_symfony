@@ -50,6 +50,17 @@ class Cars
      */
     private $energyOptions;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $kilometers;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Seats::class, inversedBy="cars",cascade={"persist"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $seats;
+
     public function __construct()
     {
         $this->energyOptions = new ArrayCollection();
@@ -160,5 +171,29 @@ class Cars
     public function __toString()
     {
         return $this->brand . '/' . $this->model;
+    }
+
+    public function getKilometers(): ?int
+    {
+        return $this->kilometers;
+    }
+
+    public function setKilometers(int $kilometers): self
+    {
+        $this->kilometers = $kilometers;
+
+        return $this;
+    }
+
+    public function getSeats(): ?Seats
+    {
+        return $this->seats;
+    }
+
+    public function setSeats(?Seats $seats): self
+    {
+        $this->seats = $seats;
+
+        return $this;
     }
 }
