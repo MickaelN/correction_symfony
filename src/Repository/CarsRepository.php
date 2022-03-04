@@ -21,12 +21,14 @@ class CarsRepository extends ServiceEntityRepository
         parent::__construct($registry, Cars::class);
     }
 
-    public function findBySearch($carsSearch)
+    public function findBySearch($carsSearch, $seatSearch)
     {
         $query = $this->createQueryBuilder('c')
             //Le MEMBER OF permet à doctrine de faire la jointure et la bonne recherche
             ->andWhere(':idOptionEnergy MEMBER OF c.energyOptions')
+            ->andWhere('c.seats = :seat')
             ->setParameter('idOptionEnergy', $carsSearch)
+            ->setParameter('seat', $seatSearch)
             ->getQuery()
             ->getResult();
         return $query;
