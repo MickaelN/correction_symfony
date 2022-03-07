@@ -28,7 +28,7 @@ class CarController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             $search_car = $request->request->get('search_car');
-            $cars = $carsRepository->findBySearch($search_car['energyOption'],$search_car['seat']);
+            $cars = $carsRepository->findBySearch($search_car);
         }
         return $this->render('car/index.html.twig', [
             'carList' => $cars,

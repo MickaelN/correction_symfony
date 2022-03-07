@@ -8,6 +8,7 @@ use App\Entity\Seats;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SearchCarType extends AbstractType
@@ -24,7 +25,8 @@ class SearchCarType extends AbstractType
                 'class' => Seats::class,
                 'choice_label' => 'number',
                 'mapped' => false
-            ]);
+            ])
+            ->add('kilometer', NumberType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

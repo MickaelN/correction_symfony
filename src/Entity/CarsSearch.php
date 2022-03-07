@@ -19,6 +19,13 @@ class CarsSearch
     private $seat;
 
     /**
+     * Undocumented variable
+     *
+     * @var int
+     */
+    private $kilometer;
+
+    /**
      * @return ArrayCollection
      */
     public function getEnergyOption(): ArrayCollection
@@ -49,6 +56,23 @@ class CarsSearch
     public function setSeat(ArrayCollection $seat): self
     {
         $this->seat = $seat;
+        return $this;
+    }
+
+   /**
+     * @return int
+     */
+    public function getKilometer(): int
+    {
+        return $this->kilometer;
+    }
+    /**
+     * @param int $kilometer
+     * @return self
+     */
+    public function setKilometer(int $kilometer): self
+    {
+        $this->kilometer = $kilometer;
         return $this;
     }
 
